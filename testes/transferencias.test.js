@@ -1,14 +1,15 @@
 import http from 'k6/http';
 import { sleep, check } from 'k6';
 import { obterToken } from '../helpers/autenticacao.js';
+import{ pegarBaseURL } from '../utils/variaveis.js';
 
 export const options = {
-  itereations: 1,
+  itereations: 10,
 };
 
 export default function () {
   const token = obterToken();
-  const url = 'http://localhost:3000/Transferencias';
+  const url = pegarBaseURL() + '/Transferencias';
 
   const payload = JSON.stringify({
     contaOrigem: 1,
